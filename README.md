@@ -100,11 +100,11 @@ You can use tools like **Postman** or **cURL** to test the API endpoints. Here a
   curl -X DELETE http://localhost:3000/api/users/1
   ```
 
-## Video Demo
+## Video Demonstration
 
-Here’s a screen recording demonstrating the CRUD operations in action:
+Here is a video demonstration of the project:
 
-[![Screen Recording](https://github.com/Dinakarnayak/crud-operation-node-mysql/blob/main/Screen%20Recording%202025-01-29%20115003.mp4)
+[Watch the Video](https://drive.google.com/file/d/1DvQrVWAg9NK7TwLzNYP87cBFpoHHxvRh/view?usp=drive_link)
 
 Click the link above to watch the full demonstration of how the CRUD operations work in this application.
 
