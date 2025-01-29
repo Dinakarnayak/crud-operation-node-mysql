@@ -142,7 +142,7 @@ node server.js
 
 Watch the demo of the CRUD API in action:
 
-[![Demo Video]()
+[![Demo Video](Screen Recording 2025-01-29 120540.mp4)
 The server will be running at `http://localhost:3000`.
 
 ## API Endpoints
