@@ -1,45 +1,36 @@
 
-# MySQL CRUD API with Optional MySQL or XMYSQL
+# CRUD Operation with Node.js and MySQL
 
-This is a simple Node.js CRUD API connected to a MySQL database. You can use either the **MySQL** library or **XMYSQL** library to interact with the MySQL database. It supports Create, Read, Update, and Delete (CRUD) operations on user data. This API is built with **Express.js** and can work with both MySQL and XMYSQL.
+This project demonstrates a simple CRUD (Create, Read, Update, Delete) application using Node.js and MySQL. It provides an API for performing these operations on a MySQL database. The application can be used as a template for building full-stack web applications that require backend CRUD functionality.
 
 ## Features
 
-- **Create** a new contact.
-- **Read** contact data (all contacts or specific contact by ID).
-- **Update** contact data.
-- **Delete** a contact.
+- **Create**: Allows you to add new records to the MySQL database.
+- **Read**: Fetches data from the MySQL database.
+- **Update**: Allows modification of existing records.
+- **Delete**: Deletes records from the MySQL database.
+  
+## Technologies Used
 
-## Contact Information
-
-Sample contact record in the database:
-
-### Contact Information
-
-- **Contact ID**: 21
-- **First Name**: Aarav
-- **Last Name**: Sharma
-- **Street**: 12 MG Road
-- **City**: Mumbai
-- **ZIP Code**: 400001
-- **Date Added**: 2025-01-26
+- **Node.js**: A JavaScript runtime environment to run server-side code.
+- **Express.js**: A minimal web framework for building APIs.
+- **MySQL**: A relational database management system for storing data.
+- **body-parser**: A middleware to parse incoming request bodies.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** (version 14.x or higher)
-- **MySQL** (or any MySQL-compatible database)
-- **Postman** or any API testing tool
+- Node.js (v14.x or later)
+- MySQL database
+- npm (Node Package Manager)
 
-## Setup
+## Getting Started
 
 ### 1. Clone the Repository
 
-Clone the repository to your local machine using the following command:
-
 ```bash
-git clone https://github.com/yourusername/mysql-crud-api.git
+git clone https://github.com/Dinakarnayak/crud-operation-node-mysql.git
 ```
 
 ### 2. Install Dependencies
@@ -47,212 +38,79 @@ git clone https://github.com/yourusername/mysql-crud-api.git
 Navigate to the project directory and install the required dependencies:
 
 ```bash
-cd mysql-crud-api
+cd crud-operation-node-mysql
 npm install
 ```
 
-### 3. Choose Your Database Interaction Library
+### 3. Set Up MySQL Database
 
-You have two options to interact with the MySQL database: **MySQL** or **XMYSQL**.
+Create a MySQL database and table for your data.
 
-#### Option 1: Using MySQL
+```sql
+CREATE DATABASE crud_app;
+USE crud_app;
 
-1. Install the **mysql2** package:
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+```
 
-   ```bash
-   npm install mysql2
-   ```
+Update your database connection details in `config/database.js` with your MySQL credentials.
 
-2. In the `server.js` file, use the standard **mysql2** library to configure your connection:
+### 4. Run the Application
 
-   ```javascript
-   const mysql = require('mysql2');
-
-   const db = mysql.createConnection({
-     host: 'localhost',
-     user: 'root',
-     password: 'your_password',
-     database: 'your_database_name',
-   });
-   ```
-
-#### Option 2: Using XMYSQL
-
-1. Install the **XMYSQL** package:
-
-   ```bash
-   npm install xmysql
-   ```
-
-2. In the `server.js` file, use **XMYSQL** to configure your connection:
-
-   ```javascript
-   const XMYSQL = require('xmysql');
-
-   const db = XMYSQL.createConnection({
-     host: 'localhost',
-     user: 'root',
-     password: 'your_password',
-     database: 'your_database_name',
-   });
-   ```
-
-### 4. Set Up MySQL Database
-
-1. Log in to MySQL:
-
-   ```bash
-   mysql -u root -p
-   ```
-
-2. Create a new database:
-
-   ```sql
-   CREATE DATABASE your_database_name;
-   ```
-
-3. Create a `contacts` table with the following schema:
-
-   ```sql
-   CREATE TABLE contacts (
-       contact_id INT AUTO_INCREMENT PRIMARY KEY,
-       first_name VARCHAR(100),
-       last_name VARCHAR(100),
-       street VARCHAR(255),
-       city VARCHAR(100),
-       zip VARCHAR(10),
-       date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-   );
-   ```
-
-4. Use the created database:
-
-   ```sql
-   USE your_database_name;
-   ```
-
-### 5. Start the Server
-
-Once everything is configured, you can start the server by running the following command:
+After setting up your database, you can start the server:
 
 ```bash
-node server.js
-```
-## Demo Video
-
-Watch the demo of the CRUD API in action:
-
-[![Demo Video]("C:\Users\Admin\Downloads\compressed\Screen Recording 2025-01-29 120540.mp4")
-The server will be running at `http://localhost:3000`.
-
-## API Endpoints
-
-### 1. Create a New Contact (POST)
-
-- **Endpoint**: `POST /contacts`
-- **Request Body** (JSON):
-
-```json
-{
-  "first_name": "Aarav",
-  "last_name": "Sharma",
-  "street": "12 MG Road",
-  "city": "Mumbai",
-  "zip": "400001"
-}
+npm start
 ```
 
-- **Response**:
+The server will start running on `http://localhost:3000`.
 
-```json
-{
-  "message": "Contact created successfully",
-  "contact_id": 21
-}
-```
+### 5. API Endpoints
 
-### 2. Get All Contacts (GET)
+- **Create**: `POST /api/users` – Adds a new user.
+- **Read**: `GET /api/users` – Fetches all users.
+- **Update**: `PUT /api/users/:id` – Updates user details by ID.
+- **Delete**: `DELETE /api/users/:id` – Deletes a user by ID.
 
-- **Endpoint**: `GET /contacts`
-- **Response**:
+### 6. Testing the API
 
-```json
-[
-  {
-    "contact_id": 21,
-    "first_name": "Aarav",
-    "last_name": "Sharma",
-    "street": "12 MG Road",
-    "city": "Mumbai",
-    "zip": "400001",
-    "date_added": "2025-01-26T00:00:00Z"
-  }
-]
-```
+You can use tools like **Postman** or **cURL** to test the API endpoints. Here are examples using `curl`:
 
-### 3. Get a Contact by ID (GET)
+- **Create**:  
+  ```bash
+  curl -X POST http://localhost:3000/api/users -H "Content-Type: application/json" -d '{"name":"John Doe", "email":"john@example.com"}'
+  ```
 
-- **Endpoint**: `GET /contacts/:id`
-- **Example**: `GET /contacts/21`
+- **Read**:  
+  ```bash
+  curl http://localhost:3000/api/users
+  ```
 
-- **Response**:
+- **Update**:  
+  ```bash
+  curl -X PUT http://localhost:3000/api/users/1 -H "Content-Type: application/json" -d '{"name":"Jane Doe", "email":"jane@example.com"}'
+  ```
 
-```json
-{
-  "contact_id": 21,
-  "first_name": "Aarav",
-  "last_name": "Sharma",
-  "street": "12 MG Road",
-  "city": "Mumbai",
-  "zip": "400001",
-  "date_added": "2025-01-26T00:00:00Z"
-}
-```
+- **Delete**:  
+  ```bash
+  curl -X DELETE http://localhost:3000/api/users/1
+  ```
 
-### 4. Update a Contact (PUT)
+## Video Demo
 
-- **Endpoint**: `PUT /contacts/:id`
-- **Request Body** (JSON):
+Here’s a screen recording demonstrating the CRUD operations in action:
 
-```json
-{
-  "first_name": "Aarav",
-  "last_name": "Sharma",
-  "street": "14 MG Road",
-  "city": "Mumbai",
-  "zip": "400002"
-}
-```
+[![Screen Recording](https://img.youtube.com/vi/<video_id>/0.jpg)](https://github.com/Dinakarnayak/crud-operation-node-mysql/blob/main/Screen%20Recording%202025-01-29%20115003.mp4)
 
-- **Response**:
+Click the link above to watch the full demonstration of how the CRUD operations work in this application.
 
-```json
-{
-  "message": "Contact updated successfully"
-}
-```
+## Contributing
 
-### 5. Delete a Contact (DELETE)
-
-- **Endpoint**: `DELETE /contacts/:id`
-- **Example**: `DELETE /contacts/21`
-
-- **Response**:
-
-```json
-{
-  "message": "Contact deleted successfully"
-}
-```
-
-## Testing with Postman
-
-Use **Postman** to test the following CRUD operations:
-
-1. **POST** a new contact.
-2. **GET** all contacts or a contact by ID.
-3. **PUT** to update a contact.
-4. **DELETE** to remove a contact.
+Feel free to fork this repository, make changes, and create a pull request. Contributions are welcome!
 
 ## License
 
@@ -260,7 +118,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-- Express.js for handling the API routing and server setup.
-- MySQL for database management (if you're using `mysql2`).
-- XMYSQL for simplified MySQL interactions (if you're using `XMYSQL`).
-
+- [Node.js](https://nodejs.org/) - The server-side JavaScript runtime.
+- [Express.js](https://expressjs.com/) - A fast, unopinionated, minimalist web framework for Node.js.
+- [MySQL](https://www.mysql.com/) - The relational database management system.
