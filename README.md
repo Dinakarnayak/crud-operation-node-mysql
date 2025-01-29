@@ -104,7 +104,7 @@ You can use tools like **Postman** or **cURL** to test the API endpoints. Here a
 
 Here’s a screen recording demonstrating the CRUD operations in action:
 
-[![Screen Recording](https://img.youtube.com/vi/<video_id>/0.jpg)](https://github.com/Dinakarnayak/crud-operation-node-mysql/blob/main/Screen%20Recording%202025-01-29%20115003.mp4)
+[![Screen Recording](https://github.com/Dinakarnayak/crud-operation-node-mysql/blob/main/Screen%20Recording%202025-01-29%20115003.mp4)
 
 Click the link above to watch the full demonstration of how the CRUD operations work in this application.
 
