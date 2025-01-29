@@ -138,8 +138,12 @@ Once everything is configured, you can start the server by running the following
 ```bash
 node server.js
 ```
+## Demo Video
 
-The server will be running at `http://localhost:5000`.
+Watch the demo of the CRUD API in action:
+
+[![Demo Video]()
+The server will be running at `http://localhost:3000`.
 
 ## API Endpoints
 
@@ -259,5 +263,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Express.js for handling the API routing and server setup.
 - MySQL for database management (if you're using `mysql2`).
 - XMYSQL for simplified MySQL interactions (if you're using `XMYSQL`).
-```
 
